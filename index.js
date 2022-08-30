@@ -14,7 +14,7 @@ const posts = ["Post 1 asdfaefja;oinfa ;sdlkn ;aodfn a;sdfja ;oeifn a;dfoina ;fn
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "../react-client/build")));
+app.use(express.static(path.resolve(__dirname, "./react-client/build")));
 
 app.use(express.json());
 app.use(express.urlencoded({

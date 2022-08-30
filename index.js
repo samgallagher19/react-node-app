@@ -5,7 +5,8 @@ const path = require("path");
 
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect("mongodb://localhost:27017/blogDB");
+//mongoose.connect("mongodb://localhost:27017/blogDB");
+mongoose.connect("mongodb+srv://admin-sam:avKwhRBNQucuy76u@cluster0.9fmic.mongodb.net/?retryWrites=true&w=majority/blogDB");
 
 const postSchema = new mongoose.Schema({ title: String, content: String, status: String});
 

@@ -15,7 +15,7 @@ const posts = ["Post 1 asdfaefja;oinfa ;sdlkn ;aodfn a;sdfja ;oeifn a;dfoina ;fn
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, "./react-client/public")));
+app.use(express.static(path.resolve(__dirname, "./react-client/build")));
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -63,7 +63,7 @@ app.delete("/posts", (req, res) => {
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './react-client/public', 'index.html'));
+    res.sendFile(path.resolve(__dirname, './react-client/build', 'index.html'));
   });
 
 app.listen(PORT, () => {

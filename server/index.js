@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 
 mongoose.connect("mongodb://localhost:27017/blogDB");
 
-const postSchema = new mongoose.Schema({ title: String, content: String});
+const postSchema = new mongoose.Schema({ title: String, content: String, status: String});
 
 const Post = mongoose.model("Post", postSchema);
 
@@ -40,7 +40,7 @@ app.post("/posts", (req, res) => {
     //posts.push(req.body.username);
     console.log(posts);
 
-    const post = new Post({ title: req.body.title, content: req.body.content});
+    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status});
 
     post.save(function (err) {
         if (!err) {console.log("New post saved");}

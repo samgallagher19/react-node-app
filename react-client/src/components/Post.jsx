@@ -25,6 +25,7 @@ function Post(props) {
     <div className="card-body">
       {props.content}
     </div>
+    {props.status === 'backlog' ? <button>Send to In Progress</button> : props.status === 'in-progress'? <button>Send Complete</button> : ''}
     <button onClick={handleClick}>Delete</button>
   </div>;
 }

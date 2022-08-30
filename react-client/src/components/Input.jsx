@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 function Input(props) {
-    const [newPost, setNewPost] = useState({title: '', content: ''});
+    const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog'});
 
     function handleChange(event) {
       const {name, value} = event.target;

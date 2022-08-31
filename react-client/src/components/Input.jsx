@@ -34,8 +34,15 @@ function Input(props) {
       }
 
     return <div>
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleChange} name="title" type="text" placeholder="Title" value={newPost.title} />
-            <textarea onChange={handleChange} name="content" placeholder="post content" value={newPost.content}></textarea>
+            <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleChange} name="title" value={newPost.title} />
+            <TextField
+            onChange={handleChange} name="content" value={newPost.content}
+          id="outlined-multiline-static"
+          label="Multiline"
+          multiline
+          rows={4}
+          defaultValue="Post Content"
+        />
             <button onClick={handleClick}>SUBMIT EXAMPLE DATA</button>
           </div>;
 }

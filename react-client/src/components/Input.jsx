@@ -10,19 +10,18 @@ function Input(props) {
 
 
     function handleClick(event) {
-        const data1 = { username: 'example' };
-
-        console.log(newPost);
-
         fetch('/posts', {
           method: 'POST', // or 'PUT'
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newPost),
-        }).then(function(response) {
-          console.log(response)
-          return response.json();
+        }).then((response) => response.json())
+        .then((newPost) => {
+          console.log('Success:', newPost);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
         });
 
         props.onUpdatePosts();

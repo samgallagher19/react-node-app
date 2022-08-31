@@ -3,16 +3,20 @@ import React from "react";
 function Post(props) {
     function handleClick(event) {
       console.log(props.id);
+      const idObj = {id: props.id};
 
       fetch('/posts', {
         method: 'DELETE', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({id: props.id}),
-      }).then(function(response) {
-        console.log(response)
-        return response;
+        body: JSON.stringify(idObj),
+      }).then((response) => response.json())
+      .then((idObj) => {
+        console.log('Success:', idObj);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
 
       props.onUpdatePosts();

@@ -4,13 +4,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 
 function Input(props) {
     const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog'});
-
-    const theme = createTheme();
 
     function handleChange(event) {
       const {name, value} = event.target;

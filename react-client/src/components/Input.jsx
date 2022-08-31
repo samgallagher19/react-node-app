@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 
 function Input(props) {
@@ -34,7 +35,7 @@ function Input(props) {
 
       }
 
-    return <div>
+    return <Stack spacing={2}>
             <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleChange} name="title" value={newPost.title} />
             <TextField
             onChange={handleChange} name="content" value={newPost.content}
@@ -45,7 +46,7 @@ function Input(props) {
           defaultValue="Post Content"
         />
             <Button onClick={handleClick} variant="contained">Submit</Button>
-          </div>;
+            </Stack>;
 }
 
 export default Input;

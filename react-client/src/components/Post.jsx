@@ -1,4 +1,8 @@
 import React from "react";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
 
 function Post(props) {
     function handleClick(event) {
@@ -24,14 +28,18 @@ function Post(props) {
       event.preventDefault();
     }
 
-    return <div>
+    return <Card sx={{ maxWidth: 345 }}>
+    <CardContent>
     <h5>{props.title}</h5>
     <div>
       {props.content}
     </div>
+    </CardContent>
+    <CardActions>
     {props.status === 'backlog' ? <button>Send to In Progress</button> : props.status === 'in-progress'? <button>Send Complete</button> : ''}
     <button onClick={handleClick}>Delete</button>
-  </div>;
+    </CardActions>
+  </Card>;
 }
 
 export default Post;

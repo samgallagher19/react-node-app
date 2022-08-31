@@ -9,7 +9,7 @@ function Input(props) {
     }
 
 
-    function HandleClick(event) {
+    function handleClick(event) {
         const data1 = { username: 'example' };
 
         console.log(newPost);
@@ -34,7 +34,7 @@ function Input(props) {
     return <div>
             <input onChange={handleChange} name="title" type="text" placeholder="Title" value={newPost.title}/>
             <textarea onChange={handleChange} name="content" placeholder="post content" value={newPost.content}></textarea>
-            <button onClick={HandleClick}>SUBMIT EXAMPLE DATA</button>
+            <button onClick={handleClick}>SUBMIT EXAMPLE DATA</button>
           </div>;
 }
 

@@ -27,6 +27,8 @@ app.use(cors());
 
 app.use(express.static("public"));
 
+app.options('*', cors())
+
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
 });

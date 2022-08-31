@@ -49,7 +49,11 @@ app.post("/posts", (req, res) => {
     const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status});
 
     post.save(function (err) {
-        if (!err) {console.log("New post saved");}
+        if (!err) {
+            res.send("New post saved");
+        } else {
+            res.send(err);
+        }
     });
 });
 
@@ -57,9 +61,9 @@ app.delete("/posts", (req, res) => {
     console.log(req.body.id);
     Post.deleteOne({'_id': req.body.id}, (err) => {
         if(!err) {
-            console.log("Successfully deleted post.");
+            res.send("Successfully deleted post.");
         } else {
-            console.log(err);
+            res.send(err);
         }
     });
 });

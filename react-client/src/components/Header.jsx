@@ -1,9 +1,9 @@
 import React from "react";
 
 function Header() {
-    return (<nav className="navbar bg-light">
-    <div className="container-fluid">
-      <a className="navbar-brand" href="#">
+    return (<nav>
+    <div>
+      <a>
         SJG
       </a>
     </div>

@@ -24,9 +24,9 @@ function Post(props) {
       event.preventDefault();
     }
 
-    return <div className="card" style={{width: "18rem", margin: "2em"}}>
-    <h5 className="card-title">{props.title}</h5>
-    <div className="card-body">
+    return <div>
+    <h5>{props.title}</h5>
+    <div>
       {props.content}
     </div>
     {props.status === 'backlog' ? <button>Send to In Progress</button> : props.status === 'in-progress'? <button>Send Complete</button> : ''}

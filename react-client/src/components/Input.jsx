@@ -3,10 +3,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 
 function Input(props) {
     const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog'});
+
+    const theme = createTheme();
 
     function handleChange(event) {
       const {name, value} = event.target;
@@ -35,7 +39,8 @@ function Input(props) {
 
       }
 
-    return <Stack spacing={2}>
+    return <Box sx={{ width: '50%', margin: theme.spacing(2, 'auto') }}>
+            <Stack spacing={2}>
             <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleChange} name="title" value={newPost.title} />
             <TextField
             onChange={handleChange} name="content" value={newPost.content}
@@ -46,7 +51,8 @@ function Input(props) {
           defaultValue="Post Content"
         />
             <Button onClick={handleClick} variant="contained">Submit</Button>
-            </Stack>;
+            </Stack>
+            </Box>;
 }
 
 export default Input;

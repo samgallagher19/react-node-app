@@ -39,7 +39,7 @@ function Input(props) {
 
       }
 
-    return <Box sx={{ width: '50%', margin: theme.spacing(2, 'auto') }}>
+    return <Box sx={{ width: '50%', margin: theme.spacing(2) }}>
             <Stack spacing={2}>
             <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleChange} name="title" value={newPost.title} />
             <TextField

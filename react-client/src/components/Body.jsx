@@ -12,7 +12,7 @@ function Body(props) {
 
   return <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            {props.posts.map(post => <Grid item xs={8}><Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} onUpdatePosts={props.onUpdatePosts}/></Grid>)}
+            {props.posts.map(post => <Grid item xs={4}><Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} onUpdatePosts={props.onUpdatePosts}/></Grid>)}
           </Grid>
         </Box>;
 }

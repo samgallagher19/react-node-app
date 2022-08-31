@@ -29,7 +29,7 @@ function Post(props) {
       event.preventDefault();
     }
 
-    return <Card sx={{ maxWidth: 345 }} variant="outlined">
+    return <Card variant="outlined">
     <CardContent>
     <Typography variant="h5">{props.title}</Typography>
     <Typography variant="body2">

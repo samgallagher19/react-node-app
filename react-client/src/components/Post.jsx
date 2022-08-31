@@ -12,7 +12,7 @@ function Post(props) {
         body: JSON.stringify({id: props.id}),
       }).then(function(response) {
         console.log(response)
-        return response.json();
+        return response;
       });
 
       props.onUpdatePosts();

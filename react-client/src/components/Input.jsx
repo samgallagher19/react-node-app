@@ -1,4 +1,7 @@
 import React, { useState } from "react"
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 
 function Input(props) {
     const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog'});
@@ -31,7 +34,7 @@ function Input(props) {
       }
 
     return <div>
-            <input onChange={handleChange} name="title" type="text" placeholder="Title" value={newPost.title}/>
+            <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleChange} name="title" type="text" placeholder="Title" value={newPost.title} />
             <textarea onChange={handleChange} name="content" placeholder="post content" value={newPost.content}></textarea>
             <button onClick={handleClick}>SUBMIT EXAMPLE DATA</button>
           </div>;

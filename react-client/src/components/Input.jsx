@@ -43,7 +43,7 @@ function Input(props) {
           rows={4}
           defaultValue="Post Content"
         />
-            <button onClick={handleClick}>SUBMIT EXAMPLE DATA</button>
+            <Button onClick={handleClick} variant="contained">Submit</Button>
           </div>;
 }
 

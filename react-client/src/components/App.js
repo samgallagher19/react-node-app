@@ -20,9 +20,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header onUpdatePosts={updatePosts} />
       <Body onUpdatePosts={updatePosts} posts={posts} />
-      <Input onUpdatePosts={updatePosts}/>
     </div>
   );
 }

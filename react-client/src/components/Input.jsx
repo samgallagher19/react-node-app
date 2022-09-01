@@ -3,10 +3,25 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 function Input(props) {
     const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog'});
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     function handleChange(event) {
       const {name, value} = event.target;
@@ -15,6 +30,7 @@ function Input(props) {
 
 
     function handleClick(event) {
+        handleClose();
         fetch('/posts', {
           method: 'POST', // or 'PUT'
           headers: {
@@ -35,20 +51,38 @@ function Input(props) {
 
       }
 
-    return <Box sx={{ width: '50%' }}>
-            <Stack spacing={2}>
-            <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleChange} name="title" value={newPost.title} />
-            <TextField
-            onChange={handleChange} name="content" value={newPost.content}
+      return <div>
+      <Button variant="contained" color="info" onClick={handleClickOpen}>
+      Add New Issue
+      </Button>
+      <Dialog open={open} onClose={handleClose} fullWidth="true" maxWidth="sm">
+        <DialogTitle>Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+          Provide a title and a description for this new issue.
+          </DialogContentText>
+          <Box sx={{ width: '100%' }}>
+          <Stack spacing={2}>
+          <TextField id="outlined-basic" label="Title" variant="outlined" onChange={handleChange} name="title" value={newPost.title} />
+          <TextField
+          name="content"
           id="outlined-multiline-static"
-          label="Multiline"
+          label="Issue Details"
           multiline
           rows={4}
-          defaultValue="Post Content"
+          defaultValue="Issue Details"
+          onChange={handleChange}
+          value={newPost.content}
         />
-            <Button onClick={handleClick} variant="contained">Submit</Button>
-            </Stack>
-            </Box>;
+        </Stack>
+        </Box>
+        </DialogContent>
+        <DialogActions>
+        <Button onClick={handleClick} variant="contained">Submit</Button>
+        </DialogActions>
+        </Dialog>
+
+    </div>;
 }
 
 export default Input;

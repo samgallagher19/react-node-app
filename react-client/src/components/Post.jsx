@@ -8,8 +8,10 @@ import Typography from '@mui/material/Typography';
 function Post(props) {
     function handleClick(event) {
       console.log(props.id);
+      
+      if(event.target.name === 'delete') {
+        console.log("Delete Button Pushed");
       const idObj = {id: props.id};
-
       fetch('/posts', {
         method: 'DELETE', // or 'PUT'
         headers: {
@@ -24,6 +26,24 @@ function Post(props) {
         console.error('Error:', error);
       });
 
+      } else if (event.target.name === 'progress') {
+        console.log("Progress Button Pushed");
+        const patchObj = {id: props.id, status: 'progress'};
+        fetch('/posts', {
+          method: 'PATCH', // or 'PUT'
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(patchObj),
+        }).then((response) => response.json())
+        .then((patchObj) => {
+          console.log('Success:', patchObj);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+
       props.onUpdatePosts();
 
       event.preventDefault();
@@ -37,8 +57,8 @@ function Post(props) {
     </Typography>
     </CardContent>
     <CardActions>
-    {props.status === 'backlog' ? <Button variant="contained">Send to In Progress</Button> : props.status === 'in-progress'? <button>Send Complete</button> : ''}
-    <Button variant="outlined" onClick={handleClick}>Delete</Button>
+    {props.status === 'backlog' ? <Button variant="contained" name="progress" onClick={handleClick}>Send to In Progress</Button> : props.status === 'in-progress'? <button>Send Complete</button> : ''}
+    <Button variant="outlined" name="delete" onClick={handleClick}>Delete</Button>
     </CardActions>
   </Card>;
 }

@@ -68,6 +68,17 @@ app.delete("/posts", (req, res) => {
     });
 });
 
+app.patch("/posts", (req, res) => {
+    console.log(req.body.id);
+    Post.updateOne({'_id': req.body.id}, {status : req.body.status}, (err) => {
+        if(!err) {
+            res.send("Successfully updated post.");
+        } else {
+            res.send(err);
+        }
+    });
+});
+
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, './react-client/build', 'index.html'));

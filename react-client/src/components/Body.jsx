@@ -29,6 +29,9 @@ function Body(props) {
           </Grid>
           <Grid item xs={4}>
             <Typography variant="h4" align="center">Complete</Typography>
+            <Stack spacing={2}>
+            {props.posts.filter(post => post.status === 'complete').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} onUpdatePosts={props.onUpdatePosts}/>)}
+            </Stack>
           </Grid>
           </Grid>
         </Box>;

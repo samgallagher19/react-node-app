@@ -28,6 +28,7 @@ function Post(props) {
 
       } else if (event.target.name === 'progress' || event.target.name === 'complete') {
         console.log("Progress Button Pushed");
+        console.log(props.timeLog[0]);
         const patchObj = {id: props.id, status: event.target.name};
         fetch('/posts', {
           method: 'PATCH', // or 'PUT'
@@ -46,6 +47,8 @@ function Post(props) {
 
       props.onUpdatePosts();
 
+      console.log(props.timeLog);
+
       event.preventDefault();
     }
 
@@ -57,7 +60,10 @@ function Post(props) {
     </Typography>
     </CardContent>
     <CardActions>
-    {props.status === 'backlog' ? <Button variant="contained" name="progress" onClick={handleClick}>Send to In Progress</Button> : props.status === 'progress'? <Button variant="contained" name="complete" onClick={handleClick}>Send Complete</Button> : ''}
+    {props.status === 'backlog' ? 
+      <Button variant="contained" name="progress" onClick={handleClick}>Send to In Progress</Button> : 
+        props.status === 'progress'? 
+          <Button variant="contained" name="complete" onClick={handleClick}>Send Complete</Button> : ''}
     <Button variant="outlined" name="delete" onClick={handleClick}>Delete</Button>
     </CardActions>
   </Card>;

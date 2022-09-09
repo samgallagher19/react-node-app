@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3001;
 //mongoose.connect("mongodb://localhost:27017/blogDB");
 mongoose.connect("mongodb+srv://admin-sam:avKwhRBNQucuy76u@cluster0.9fmic.mongodb.net/?retryWrites=true&w=majority/blogDB");
 
-const postSchema = new mongoose.Schema({ title: String, content: String, status: String});
+const postSchema = new mongoose.Schema({ title: String, content: String, status: String, timeLog: [{ label: String, date: Date }]});
 
 const Post = mongoose.model("Post", postSchema);
 
@@ -45,8 +45,9 @@ app.post("/posts", (req, res) => {
     console.log(req.body);
     //posts.push(req.body.username);
     console.log(posts);
+    const d = new Date();
 
-    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status});
+    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{label: "Issue Created", date: d}]});
 
     post.save(function (err) {
         if (!err) {
@@ -70,7 +71,8 @@ app.delete("/posts", (req, res) => {
 
 app.patch("/posts", (req, res) => {
     console.log(req.body.id);
-    Post.updateOne({'_id': req.body.id}, {status : req.body.status}, (err) => {
+    const d = new Date();
+    Post.updateOne({'_id': req.body.id}, {status : req.body.status, $push: { timeLog: { label: "Sent to " + req.body.status, date: d } }}, (err) => {
         if(!err) {
             res.send("Successfully updated post.");
         } else {

@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import Body from "./Body";
-import Input from "./Input";
+import Body2 from "./Body2";
+import Toggle from "./Toggle";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [posts, setPosts] = React.useState([]);
@@ -17,11 +19,19 @@ function App() {
       .then((data) => setPosts(data.posts));
   }
 
+  const [token, setToken] = React.useState();
+
+  if(!token) {
+    return <h1>LOGIN</h1>
+  }
+
 
   return (
     <div className="App">
       <Header onUpdatePosts={updatePosts} />
-      <Body onUpdatePosts={updatePosts} posts={posts} />
+
+      <Body2 onUpdatePosts={updatePosts} posts={posts} />
+
     </div>
   );
 }

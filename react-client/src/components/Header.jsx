@@ -7,8 +7,24 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from "react-router-dom";
+import Toggle from "./Toggle";
+import Login from "./Login";
+import { gapi } from "gapi-script";
+
+const clientId = "942096996649-p7fs4580cci6ai7o0m63klicvff1cl5l.apps.googleusercontent.com";
 
 export default function Header(props) {
+
+  React.useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    }
+  })
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -27,6 +43,7 @@ export default function Header(props) {
           </Typography>
           <Input onUpdatePosts={props.onUpdatePosts}/>
           <Button color="inherit">Login</Button>
+          <Login />
         </Toolbar>
       </AppBar>
     </Box>

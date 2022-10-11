@@ -3,7 +3,7 @@ import Header from "./Header";
 import Body from "./Body";
 import Body2 from "./Body2";
 import Toggle from "./Toggle";
-import { Outlet } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [posts, setPosts] = React.useState([]);
@@ -19,20 +19,16 @@ function App() {
       .then((data) => setPosts(data.posts));
   }
 
-  const [token, setToken] = React.useState();
-
-  if(!token) {
-    return <h1>LOGIN</h1>
-  }
-
 
   return (
+    <BrowserRouter>
     <div className="App">
       <Header onUpdatePosts={updatePosts} />
 
       <Body2 onUpdatePosts={updatePosts} posts={posts} />
 
     </div>
+    </BrowserRouter>
   );
 }
 

@@ -7,10 +7,10 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from "react-router-dom";
-import Toggle from "./Toggle";
-import Login from "./Login";
 import { gapi } from "gapi-script";
+import BugReportIcon from '@mui/icons-material/BugReport';
+import ProjectSelector from './ProjectSelector';
+import ViewButtons from './ViewButtons';
 
 const clientId = "942096996649-p7fs4580cci6ai7o0m63klicvff1cl5l.apps.googleusercontent.com";
 
@@ -38,12 +38,15 @@ export default function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Sam Gallagher React + Node App
+          <BugReportIcon />
+          <Typography variant="h6" component="div" sx={{ display: 'flex', mr: 2 }}>
+            BugTracker
           </Typography>
+          <ProjectSelector />
+          <ViewButtons/>
+          <Box sx={{flexGrow: 1}}/>
           <Input onUpdatePosts={props.onUpdatePosts}/>
           <Button color="inherit">Login</Button>
-          <Login />
         </Toolbar>
       </AppBar>
     </Box>

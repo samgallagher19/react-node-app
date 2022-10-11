@@ -8,3 +8,7 @@ input {
 textarea {
   display: block;
 }
+
+.viewButtons {
+  color: white;
+}

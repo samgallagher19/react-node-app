@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { gapi } from "gapi-script";
 import BugReportIcon from '@mui/icons-material/BugReport';
 import ProjectSelector from './ProjectSelector';
 import ViewButtons from './ViewButtons';
@@ -15,15 +14,6 @@ import ViewButtons from './ViewButtons';
 const clientId = "942096996649-p7fs4580cci6ai7o0m63klicvff1cl5l.apps.googleusercontent.com";
 
 export default function Header(props) {
-
-  React.useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: ""
-      })
-    }
-  })
 
   return (
     <Box sx={{ flexGrow: 1 }}>

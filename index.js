@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -6,7 +7,7 @@ const postRoutes = require("./routes/postRoutes");
 
 const PORT = process.env.PORT || 3001;
 
-mongoose.connect("mongodb+srv://admin-sam:avKwhRBNQucuy76u@cluster0.9fmic.mongodb.net/?retryWrites=true&w=majority/blogDB");
+mongoose.connect(process.env.MONGODB_HOST_NAME);
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.use('/posts', postRoutes);
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, './react-client/build', 'index.html'));
-  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

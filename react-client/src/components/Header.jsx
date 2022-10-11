@@ -10,10 +10,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import ProjectSelector from './ProjectSelector';
 import ViewButtons from './ViewButtons';
+import AuthenticationButton from './AuthenticationButton';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const clientId = "942096996649-p7fs4580cci6ai7o0m63klicvff1cl5l.apps.googleusercontent.com";
 
 export default function Header(props) {
+
+  const { isAuthenticated } = useAuth0();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -35,8 +39,8 @@ export default function Header(props) {
           <ProjectSelector />
           <ViewButtons/>
           <Box sx={{flexGrow: 1}}/>
-          <Input onUpdatePosts={props.onUpdatePosts}/>
-          <Button color="inherit">Login</Button>
+          {isAuthenticated && <Input onUpdatePosts={props.onUpdatePosts}/>}
+          <AuthenticationButton />
         </Toolbar>
       </AppBar>
     </Box>

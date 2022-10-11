@@ -21,14 +21,15 @@ function App() {
 
 
   return (
-    <BrowserRouter>
+    
     <div className="App">
+    
       <Header onUpdatePosts={updatePosts} />
 
       <Body2 onUpdatePosts={updatePosts} posts={posts} />
 
     </div>
-    </BrowserRouter>
+    
   );
 }
 

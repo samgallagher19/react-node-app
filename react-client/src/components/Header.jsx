@@ -36,11 +36,11 @@ export default function Header(props) {
           <Typography variant="h6" component="div" sx={{ display: 'flex', mr: 2 }}>
             BugTracker
           </Typography>
-          <ProjectSelector />
-          <ViewButtons/>
+          {isAuthenticated && <ProjectSelector />}
+          {isAuthenticated && <ViewButtons/>}
           <Box sx={{flexGrow: 1}}/>
           {isAuthenticated && <Input onUpdatePosts={props.onUpdatePosts}/>}
-          <AuthenticationButton />
+          <AuthenticationButton location="navbar" />
         </Toolbar>
       </AppBar>
     </Box>

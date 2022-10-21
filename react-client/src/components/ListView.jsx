@@ -15,9 +15,11 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import Loading from './Loading';
 
 
-export default function ListView() {
+function ListView() {
     return (
       <div>
       <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
@@ -46,3 +48,7 @@ export default function ListView() {
           </div>
     );
   }
+
+  export default withAuthenticationRequired(ListView, {
+    onRedirecting: () => <Loading />,
+  });

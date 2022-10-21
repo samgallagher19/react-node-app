@@ -8,10 +8,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 function Input(props) {
-    const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog'});
+    const { user } = useAuth0();
+    const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog', user: user.sub});
 
     const [open, setOpen] = React.useState(false);
 

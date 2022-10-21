@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import Loading from './Loading';
 
 
 function KanbanView(props) {
@@ -37,4 +39,6 @@ function KanbanView(props) {
         </Box>;
 }
 
-export default KanbanView;
+export default withAuthenticationRequired(KanbanView, {
+  onRedirecting: () => <Loading />,
+});

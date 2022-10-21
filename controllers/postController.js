@@ -10,7 +10,7 @@ const post_index = (req, res) => {
 const post_create = (req, res) => {
     const d = new Date();
 
-    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{label: "Issue Created", date: d}]});
+    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{label: "Issue Created", date: d, user: req.body.user}]});
 
     post.save(function (err) {
         if (!err) {

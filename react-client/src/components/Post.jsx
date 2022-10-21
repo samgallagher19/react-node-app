@@ -58,6 +58,7 @@ function Post(props) {
     <Typography variant="body2">
       {props.content}
     </Typography>
+    
     </CardContent>
     <CardActions>
     {props.status === 'backlog' ? 

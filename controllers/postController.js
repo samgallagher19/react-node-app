@@ -10,7 +10,7 @@ const post_index = (req, res) => {
 const post_create = (req, res) => {
     const d = new Date();
 
-    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{label: "Issue Created", date: d, user: req.body.user}]});
+    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{label: "Issue Created", date: d, user: req.body.user}], assignee: req.body.assignee});
 
     post.save(function (err) {
         if (!err) {
@@ -33,13 +33,29 @@ const post_delete = (req, res) => {
 
 const post_update = (req, res) => {
     const d = new Date();
-    Post.updateOne({'_id': req.body.id}, {status : req.body.status, $push: { timeLog: { label: "Sent to " + req.body.status, date: d } }}, (err) => {
+    if(req.body.status) {
+    Post.updateOne({'_id': req.body.id}, 
+                    {status : req.body.status, 
+                     $push: { timeLog: { label: "Sent to " + req.body.status, date: d, user: req.body.user } }
+                    }, (err) => {
         if(!err) {
             res.send("Successfully updated post.");
         } else {
             res.send(err);
         }
     });
+    } else if (req.body.assignee) {
+        Post.updateOne({'_id': req.body.id}, 
+                    {assignee : req.body.assignee, 
+                     $push: { timeLog: { label: "Assignee changed to " + req.body.assignee.nickname, date: d, user: req.body.user } }
+                    }, (err) => {
+        if(!err) {
+            res.send("Successfully updated post.");
+        } else {
+            res.send(err);
+        }
+    });
+    }   
 }
 
 module.exports = {

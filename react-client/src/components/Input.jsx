@@ -13,7 +13,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 function Input(props) {
     const { user } = useAuth0();
-    const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog', user: user.sub});
+    const [newPost, setNewPost] = useState({title: '', content: '', status: 'backlog', user: user, assignee: {nickname: 'Unassigned'}});
 
     const [open, setOpen] = React.useState(false);
 

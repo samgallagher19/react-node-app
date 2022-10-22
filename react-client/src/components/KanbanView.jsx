@@ -20,19 +20,19 @@ function KanbanView(props) {
           <Grid item xs={4}>
             <Typography variant="h4" align="center">Backlog</Typography>
             <Stack spacing={2}>
-            {props.posts.filter(post => post.status === 'backlog').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} timeLog={post.timeLog} onUpdatePosts={props.onUpdatePosts}/>)}
+            {props.posts.filter(post => post.status === 'backlog').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} timeLog={post.timeLog} assignee={post.assignee} onUpdatePosts={props.onUpdatePosts}/>)}
             </Stack>
           </Grid>
           <Grid item xs={4}>
             <Typography variant="h4" align="center">In Progress</Typography>
             <Stack spacing={2}>
-            {props.posts.filter(post => post.status === 'progress').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} timeLog={post.timeLog} onUpdatePosts={props.onUpdatePosts}/>)}
+            {props.posts.filter(post => post.status === 'progress').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} timeLog={post.timeLog} assignee={post.assignee} onUpdatePosts={props.onUpdatePosts}/>)}
             </Stack>
           </Grid>
           <Grid item xs={4}>
             <Typography variant="h4" align="center">Complete</Typography>
             <Stack spacing={2}>
-            {props.posts.filter(post => post.status === 'complete').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} timeLog={post.timeLog} onUpdatePosts={props.onUpdatePosts}/>)}
+            {props.posts.filter(post => post.status === 'complete').map(post => <Post title={post.title} content={post.content} status={post.status} key={post._id} id={post._id} timeLog={post.timeLog} assignee={post.assignee} onUpdatePosts={props.onUpdatePosts}/>)}
             </Stack>
           </Grid>
           </Grid>

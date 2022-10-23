@@ -7,8 +7,10 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from "react-router-dom";
 
 function Post(props) {
+
     const { user } = useAuth0();
     console.log(props);
     function handleClick(event) {
@@ -84,7 +86,7 @@ function Post(props) {
       <div>Created by:</div> <Avatar src={props.timeLog[0].user.picture} sx={{ width: 24, height: 24 }} /> <div>{props.timeLog[0].user.nickname}</div>
     </Stack>
     <Stack direction="row" spacing={1}>
-      <div>Assignee:</div> {props.assignee.nickname != "Unassigned" && <Avatar src={props.timeLog[0].user.picture} sx={{ width: 24, height: 24 }} />} <div>{props.assignee.nickname}</div>
+      <div>Assignee:</div> {props.assignee.nickname != "Unassigned" && <Avatar src={props.assignee.picture} sx={{ width: 24, height: 24 }} />} <div>{props.assignee.nickname}</div>
       <Button name="assign" size="small" onClick={handleClick}>Assign to Me</Button>   
     </Stack>
     
@@ -95,6 +97,7 @@ function Post(props) {
         props.status === 'progress'? 
           <Button variant="contained" name="complete" onClick={handleClick}>Send Complete</Button> : ''}
     <Button variant="outlined" name="delete" onClick={handleClick}>Delete</Button>
+    <Link to={'../issue/' + props.id}><Button variant="outlined" >View Details</Button></Link>
     
     </CardActions>
   </Card>;

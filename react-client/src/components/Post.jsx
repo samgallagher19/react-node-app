@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from "react-router-dom";
+import Box from '@mui/material/Box';
 
 function Post(props) {
 
@@ -82,22 +83,24 @@ function Post(props) {
       {props.content}
     </Typography>
     
-    <Stack direction="row" spacing={1}>
-      <div>Created by:</div> <Avatar src={props.timeLog[0].user.picture} sx={{ width: 24, height: 24 }} /> <div>{props.timeLog[0].user.nickname}</div>
+    <Stack direction="row" spacing={1} sx={{mt:2}}>
+    <Typography variant="body2">Created by:</Typography> <Avatar src={props.timeLog[0].user.picture} sx={{ width: 24, height: 24 }} /> <Typography variant="body2">{props.timeLog[0].user.nickname}</Typography>
     </Stack>
-    <Stack direction="row" spacing={1}>
-      <div>Assignee:</div> {props.assignee.nickname != "Unassigned" && <Avatar src={props.assignee.picture} sx={{ width: 24, height: 24 }} />} <div>{props.assignee.nickname}</div>
-      <Button name="assign" size="small" onClick={handleClick}>Assign to Me</Button>   
+    <Stack direction="row" spacing={1} sx={{mt:1}}>
+    <Stack direction="row" spacing={1} sx={{mt:0.5}}><Typography variant="body2">Assignee:</Typography> {props.assignee.nickname != "Unassigned" && <Avatar src={props.assignee.picture} sx={{  mt:1, width: 24, height: 24 }} />} <Typography variant="body2">{props.assignee.nickname}</Typography></Stack>
+      <Button variant='outlined' name="assign" size="small" onClick={handleClick}>Assign to Me</Button>
+        
     </Stack>
+     
     
     </CardContent>
     <CardActions>
     {props.status === 'backlog' ? 
       <Button variant="contained" name="progress" onClick={handleClick}>Send to In Progress</Button> : 
         props.status === 'progress'? 
-          <Button variant="contained" name="complete" onClick={handleClick}>Send Complete</Button> : ''}
+          <Button variant="contained" name="complete" onClick={handleClick}>Send to Complete</Button> : ''}
     <Button variant="outlined" name="delete" onClick={handleClick}>Delete</Button>
-    <Link to={'../issue/' + props.id}><Button variant="outlined" >View Details</Button></Link>
+    <Link to={'../issue/' + props.id}  style={{textDecoration: 'none' }}><Button variant="outlined" sx={{ml:1}}>View Details</Button></Link>
     
     </CardActions>
   </Card>;

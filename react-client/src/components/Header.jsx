@@ -13,12 +13,13 @@ import ViewButtons from './ViewButtons';
 import AuthenticationButton from './AuthenticationButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from "react-router-dom";
+import Avatar from '@mui/material/Avatar';
 
 const clientId = "942096996649-p7fs4580cci6ai7o0m63klicvff1cl5l.apps.googleusercontent.com";
 
 export default function Header(props) {
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -43,6 +44,7 @@ export default function Header(props) {
           <Box sx={{flexGrow: 1}}/>
           {isAuthenticated && <Input onUpdatePosts={props.onUpdatePosts}/>}
           <AuthenticationButton location="navbar" />
+          {isAuthenticated && <Avatar src={user.picture} />}
         </Toolbar>
       </AppBar>
     </Box>

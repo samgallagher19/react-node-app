@@ -12,6 +12,7 @@ import ProjectSelector from './ProjectSelector';
 import ViewButtons from './ViewButtons';
 import AuthenticationButton from './AuthenticationButton';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from "react-router-dom";
 
 const clientId = "942096996649-p7fs4580cci6ai7o0m63klicvff1cl5l.apps.googleusercontent.com";
 
@@ -32,10 +33,11 @@ export default function Header(props) {
           >
             <MenuIcon />
           </IconButton>
-          <BugReportIcon />
+          <Link to="/" style={{textDecoration: 'inherit', color: 'inherit' }}><BugReportIcon /></Link>
           <Typography variant="h6" component="div" sx={{ display: 'flex', mr: 2 }}>
-            BugTracker
+          <Link to="/" style={{textDecoration: 'inherit', color: 'inherit' }}>BugTracker</Link>
           </Typography>
+          
           {isAuthenticated && <ProjectSelector />}
           {isAuthenticated && <ViewButtons/>}
           <Box sx={{flexGrow: 1}}/>

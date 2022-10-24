@@ -10,7 +10,7 @@ const post_index = (req, res) => {
 const post_create = (req, res) => {
     const d = new Date();
 
-    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{label: "Issue Created", date: d, user: req.body.user}], assignee: req.body.assignee});
+    const post = new Post({ title: req.body.title, content: req.body.content, status: req.body.status, timeLog: [{ key: "create", label: "Issue Created", date: d, user: req.body.user}], assignee: req.body.assignee, comments: []});
 
     post.save(function (err) {
         if (!err) {
@@ -36,7 +36,7 @@ const post_update = (req, res) => {
     if(req.body.status) {
     Post.updateOne({'_id': req.body.id}, 
                     {status : req.body.status, 
-                     $push: { timeLog: { label: "Sent to " + req.body.status, date: d, user: req.body.user } }
+                     $push: { timeLog: { key: "status", label: "Sent to " + req.body.status, date: d, user: req.body.user } }
                     }, (err) => {
         if(!err) {
             res.send("Successfully updated post.");
@@ -47,7 +47,7 @@ const post_update = (req, res) => {
     } else if (req.body.assignee) {
         Post.updateOne({'_id': req.body.id}, 
                     {assignee : req.body.assignee, 
-                     $push: { timeLog: { label: "Assignee changed to " + req.body.assignee.nickname, date: d, user: req.body.user } }
+                     $push: { timeLog: { key: "assign", label: "Assignee changed to " + req.body.assignee.nickname, date: d, user: req.body.user } }
                     }, (err) => {
         if(!err) {
             res.send("Successfully updated post.");
@@ -55,7 +55,17 @@ const post_update = (req, res) => {
             res.send(err);
         }
     });
-    }   
+    } else if (req.body.comment) {
+        Post.updateOne({'_id': req.body.id}, 
+                    {$push: { comments: { comment: req.body.comment, date: d, user: req.body.user } }
+                    }, (err) => {
+        if(!err) {
+            res.send("Successfully updated post.");
+        } else {
+            res.send(err);
+        }
+    });
+    }  
 }
 
 module.exports = {
